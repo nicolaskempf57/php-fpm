@@ -1,6 +1,7 @@
 FROM php:7-fpm-alpine
 RUN apk update \
-    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install pdo_mysql mysqli \
+    && docker-php-ext-enable pdo_mysql mysqli \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && rm -rf /tmp/* \
     && mkdir /var/www/public \
