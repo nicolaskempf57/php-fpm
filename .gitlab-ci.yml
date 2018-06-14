@@ -21,3 +21,9 @@ build PHP:
   - docker build --pull --tag $CI_REGISTRY_IMAGE .
   - docker push $CI_REGISTRY_IMAGE:latest
 
+build PHP7.1:
+  stage: build
+  script:
+  - docker build --pull --tag $CI_REGISTRY_IMAGE .
+  - docker push $CI_REGISTRY_IMAGE:7.1
+
