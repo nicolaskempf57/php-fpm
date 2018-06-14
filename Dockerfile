@@ -1,4 +1,5 @@
-FROM php:7-fpm-alpine
+ARG VERSION=7
+FROM php:${VERSION}-fpm-alpine
 RUN apk update \
     && docker-php-ext-install pdo_mysql mysqli \
     && docker-php-ext-enable pdo_mysql mysqli \

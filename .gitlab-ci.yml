@@ -18,18 +18,18 @@ after_script:
 build PHP:
   stage: build
   script:
-  - docker build --pull --tag $CI_REGISTRY_IMAGE .
+  - docker build --build-arg --pull --tag $CI_REGISTRY_IMAGE .
   - docker push $CI_REGISTRY_IMAGE:latest
 
-#build PHP7.0:
-#  stage: build
-#  script:
-#  - docker build --pull --tag $CI_REGISTRY_IMAGE:7.0 .
-#  - docker push $CI_REGISTRY_IMAGE:7.0
+build PHP7.0:
+  stage: build
+  script:
+  - docker build --build-arg VERSION=7.0 --pull --tag $CI_REGISTRY_IMAGE:7.0 .
+  - docker push $CI_REGISTRY_IMAGE:7.0
 
-#build PHP7.1:
-#  stage: build
-#  script:
-#  - docker build --pull --tag $CI_REGISTRY_IMAGE:7.1 .
-#  - docker push $CI_REGISTRY_IMAGE:7.1
+build PHP7.1:
+  stage: build
+  script:
+  - docker build --build-arg VERSION=7.1 --pull --tag $CI_REGISTRY_IMAGE:7.1 .
+  - docker push $CI_REGISTRY_IMAGE:7.1
 
