@@ -15,11 +15,11 @@ before_script:
 after_script:
 - docker images
 
-#build PHP:
-#  stage: build
-#  script:
-#  - docker build --pull --tag $CI_REGISTRY_IMAGE .
-#  - docker push $CI_REGISTRY_IMAGE:latest
+build PHP:
+  stage: build
+  script:
+  - docker build --pull --tag $CI_REGISTRY_IMAGE .
+  - docker push $CI_REGISTRY_IMAGE:latest
 
 #build PHP7.0:
 #  stage: build
@@ -27,9 +27,9 @@ after_script:
 #  - docker build --pull --tag $CI_REGISTRY_IMAGE:7.0 .
 #  - docker push $CI_REGISTRY_IMAGE:7.0
 
-build PHP7.1:
-  stage: build
-  script:
-  - docker build --pull --tag $CI_REGISTRY_IMAGE:7.1 .
-  - docker push $CI_REGISTRY_IMAGE:7.1
+#build PHP7.1:
+#  stage: build
+#  script:
+#  - docker build --pull --tag $CI_REGISTRY_IMAGE:7.1 .
+#  - docker push $CI_REGISTRY_IMAGE:7.1
 
