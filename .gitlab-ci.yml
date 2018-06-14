@@ -33,9 +33,8 @@ build PHP7.1:
   - docker build --build-arg VERSION=7.1 --pull --tag $CI_REGISTRY_IMAGE:7.1 .
   - docker push $CI_REGISTRY_IMAGE:7.1
 
-  build PHP7.2:
-    stage: build
-    script:
-    - docker build --build-arg VERSION=7.2 --pull --tag $CI_REGISTRY_IMAGE:7.1 .
-    - docker push $CI_REGISTRY_IMAGE:7.2
-
+build PHP7.2:
+  stage: build
+  script:
+  - docker build --build-arg VERSION=7.2 --pull --tag $CI_REGISTRY_IMAGE:7.1 .
+  - docker push $CI_REGISTRY_IMAGE:7.2
