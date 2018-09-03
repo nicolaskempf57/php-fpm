@@ -14,8 +14,7 @@ RUN apk update \
     && rm -rf /tmp/* \
     && mkdir /var/www/public \
     && chown -R www-data:www-data "/var/www" \
-    && rmdir /var/www/html \
-    && apk del autoconf g++ libtool make
+    && rmdir /var/www/html
 COPY "php-ini-overrides.ini" "/usr/local/etc/php/php.ini"
 USER "www-data"
 COPY "index.php" "/var/www/public"
