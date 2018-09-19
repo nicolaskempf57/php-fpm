@@ -1,7 +1,7 @@
 ARG VERSION=7
 FROM php:${VERSION}-fpm-alpine
 RUN apk update \
-    && apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev \
+    && apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev apk-cron \
     && docker-php-ext-configure gd \
         --with-freetype-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
@@ -16,6 +16,7 @@ RUN apk update \
     && chown -R www-data:www-data "/var/www" \
     && rmdir /var/www/html
 COPY "php-ini-overrides.ini" "/usr/local/etc/php/php.ini"
+COPY "cron.sh" "/usr/local/bin/cron"
 USER "www-data"
 COPY "index.php" "/var/www/public"
 WORKDIR "/var/www/public"
