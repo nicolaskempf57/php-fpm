@@ -1,5 +1,6 @@
 ARG VERSION=7
 FROM php:${VERSION}-fpm-alpine
+COPY "cron.sh" "/usr/local/bin/cron"
 RUN apk update \
     && apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev apk-cron \
     && docker-php-ext-configure gd \
@@ -14,9 +15,9 @@ RUN apk update \
     && rm -rf /tmp/* \
     && mkdir /var/www/public \
     && chown -R www-data:www-data "/var/www" \
-    && rmdir /var/www/html
+    && rmdir /var/www/html \
+    && chmod +x /usr/local/bin/cron
 COPY "php-ini-overrides.ini" "/usr/local/etc/php/php.ini"
-COPY "cron.sh" "/usr/local/bin/cron"
 USER "www-data"
 COPY "index.php" "/var/www/public"
 WORKDIR "/var/www/public"
