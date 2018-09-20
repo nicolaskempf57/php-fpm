@@ -1,6 +1,6 @@
 ARG VERSION=7
 FROM php:${VERSION}-fpm-alpine
-COPY "cron.sh" "/usr/local/bin/cron"
+COPY --chown=www-data:www-data "cron.sh" "/usr/local/bin/cron"
 RUN apk update \
     && apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev apk-cron \
     && docker-php-ext-configure gd \
