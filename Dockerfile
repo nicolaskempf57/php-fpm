@@ -15,7 +15,7 @@ RUN apk update \
     && mkdir /var/www/public \
     && chown -R www-data:www-data "/var/www" \
     && rmdir /var/www/html \
-    && chmod +x /usr/local/bin/cron
+    && chmod +x /usr/local/bin/cron \
     && sed -i "s|pm\.max_children.*|pm.max_children = 15|g" /usr/local/etc/php-fpm.d/www.conf
 COPY "php-ini-overrides.ini" "/usr/local/etc/php/php.ini"
 USER "www-data"
