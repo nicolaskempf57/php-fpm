@@ -9,7 +9,8 @@ RUN apk update \
         --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev \
-    && docker-php-ext-install pdo_mysql mysqli fileinfo exif opcache \
+    && docker-php-ext-install pdo_mysql mysqli opcache \
+    && docker-php-ext-install fileinfo exif \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && rm -rf /tmp/* \
     && mkdir /var/www/public \
