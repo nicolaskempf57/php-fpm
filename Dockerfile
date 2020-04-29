@@ -1,6 +1,7 @@
 ARG VERSION=7
 FROM php:${VERSION}-fpm-alpine
 COPY --chown=www-data:www-data "cron.sh" "/usr/local/bin/cron"
+ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
 RUN apk update \
     && apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev apk-cron \
     && docker-php-ext-configure gd \
@@ -15,9 +16,9 @@ RUN apk update \
     && mkdir /var/www/public \
     && chown -R www-data:www-data "/var/www" \
     && rmdir /var/www/html \
-    && chmod +x /usr/local/bin/cron \
-    && sed -i "s|pm\.max_children.*|pm.max_children = 15|g" /usr/local/etc/php-fpm.d/www.conf
+    && chmod +x /usr/local/bin/cron
 COPY "php-ini-overrides.ini" "/usr/local/etc/php/php.ini"
+COPY "opcache.ini" "/usr/local/etc/php/conf.d/opcache.ini"
 USER "www-data"
 COPY "index.php" "/var/www/public"
 WORKDIR "/var/www/public"
