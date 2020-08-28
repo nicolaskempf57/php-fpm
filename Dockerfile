@@ -1,4 +1,4 @@
-ARG VERSION=7
+ARG VERSION=7.4
 FROM php:${VERSION}-fpm-alpine
 COPY --chown=www-data:www-data "cron.sh" "/usr/local/bin/cron"
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
